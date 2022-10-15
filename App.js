@@ -67,7 +67,7 @@ function MapScreen(props) {
 function TestMessage() {
   return (
     <View style={styles.testContainer}>
-      {/* <Text>Hello, world!</Text> */}
+      <Text>Message content here</Text>
       {/* <StatusBar style="auto" /> */}
       {/* <Button
         title="Show me the Map screen"
