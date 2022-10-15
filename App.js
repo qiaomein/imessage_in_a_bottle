@@ -9,6 +9,9 @@ import * as Location from 'expo-location';
 import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
 
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
 // export default 
 function MapScreen(props) {
   return (
@@ -61,44 +64,52 @@ function MapScreen(props) {
 //   }
 // }
 
-function MessagesScreen({navigation}) {
+function TestMessage() {
   return (
-    <ScrollView contentContainerStyle={styles.stage}>
-      <TableView appearance="light">
-        <Section header="My Messages" footer="">
-          <Cell 
-            cellStyle="Subtitle"
-            title="Message #"
-            detail="Location + Date"
-            accessory="DisclosureIndicator"
-            onPress={() => console.log()}
-          />
-        </Section>
-      </TableView>
-    </ScrollView>
-    // <View style={styles.testContainer}>
-    //   {/* <Text>Hello, world!</Text> */}
-    //   {/* <StatusBar style="auto" /> */}
-    //   {/* <Button
-    //     title="Show me the Map screen"
-    //     onPress={() => navigation.navigate('Map')}/> */}
-    // </View>
+    <View style={styles.testContainer}>
+      {/* <Text>Hello, world!</Text> */}
+      {/* <StatusBar style="auto" /> */}
+      {/* <Button
+        title="Show me the Map screen"
+        onPress={() => navigation.navigate('Map')}/> */}
+    </View>
   );
 }
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+function MessagesScreen({navigation}) {
+  return (
+    <ScrollView contentContainerStyle={styles.stage}>
+    <TableView appearance="light">
+      <Section header="" footer="">
+        <Cell 
+          cellStyle="Subtitle"
+          title="Message Title"
+          detail="Location + Date"
+          accessory="DisclosureIndicator"
+          onPress={() => navigation.navigate('Message Title')}
+        />
+      </Section>
+    </TableView>
+  </ScrollView>
+  );
+}
+
+function Messages() {
+  return (
+    <Stack.Navigator>
+    {/* {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+    <Stack.Screen name="All Messages" component={MessagesScreen} />
+    <Stack.Screen name="Message Title" component={TestMessage} />
+  </Stack.Navigator>
+  );
+}
 
 function App() {
   return (
     <NavigationContainer>
-      {/* <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Map" component={MapScreen} />
-      </Stack.Navigator> */}
       <Tab.Navigator>
         <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="My Messages" component={MessagesScreen} />
+        <Tab.Screen name="My Messages" component={Messages} />
       </Tab.Navigator>
     </NavigationContainer>
   );
