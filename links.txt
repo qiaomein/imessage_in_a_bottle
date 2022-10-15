@@ -15,3 +15,7 @@ https://www.brainstormcreative.co.uk/react-native-expo/how-to-set-up-expo-app-na
 expo go map location
 https://mdmoin07.medium.com/react-native-maps-with-autocomplete-e9c71e493974
 https://docs.expo.dev/versions/latest/sdk/location/#enabling-emulator-location
+
+expo go tableview
+https://snack.expo.dev/?platform=ios
+

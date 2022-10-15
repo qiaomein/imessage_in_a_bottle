@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as Location from 'expo-location';
+import { Cell, Section, TableView } from 'react-native-tableview-simple';
+import { ScrollView } from 'react-native-gesture-handler';
 
 // export default 
 function MapScreen(props) {
@@ -61,13 +63,26 @@ function MapScreen(props) {
 
 function MessagesScreen({navigation}) {
   return (
-    <View style={styles.testContainer}>
-      <Text>Hello, world!</Text>
-      {/* <StatusBar style="auto" /> */}
-      {/* <Button
-        title="Show me the Map screen"
-        onPress={() => navigation.navigate('Map')}/> */}
-    </View>
+    <ScrollView contentContainerStyle={styles.stage}>
+      <TableView appearance="light">
+        <Section header="My Messages" footer="">
+          <Cell 
+            cellStyle="Subtitle"
+            title="Message #"
+            detail="Location + Date"
+            accessory="DisclosureIndicator"
+            onPress={() => console.log()}
+          />
+        </Section>
+      </TableView>
+    </ScrollView>
+    // <View style={styles.testContainer}>
+    //   {/* <Text>Hello, world!</Text> */}
+    //   {/* <StatusBar style="auto" /> */}
+    //   {/* <Button
+    //     title="Show me the Map screen"
+    //     onPress={() => navigation.navigate('Map')}/> */}
+    // </View>
   );
 }
 
