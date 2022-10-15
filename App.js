@@ -5,15 +5,59 @@ import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as Location from 'expo-location';
 
 // export default 
-function MapScreen() {
+function MapScreen(props) {
   return (
-    <View style={styles.testContainer}>
-      <MapView style={styles.map} />
+    <View style={styles.mapContainer}>
+      <MapView 
+        style={styles.map}
+        region={props.region}
+        showsUserLocation={true}
+        // onRegionChange={(reg) => props.onRegionChange(reg)} 
+        />
+      {/* <MapView.Marker
+        coordinate={props.region} /> */}
     </View>
   );
 }
+
+// class MapContainer extends React.Component {
+//   state = {
+//     region: {},
+//   };
+//   componentDidMount() {
+//     this.getInitialState();
+//   }
+//   getInitialState() {
+//     getLocation().then(data => {
+//       this.updateState({
+//         latitude: data.latitude,
+//         longitude: data.longitude,
+//       });
+//     });
+//   }
+//   updateState(location) {
+//     this.setState({
+//       region: {
+//         latitude: location.latitude,
+//         longitude: location.longitude,
+//         latitudeDelta: 0.003,
+//         longitudeDelta: 0.003,
+//       },
+//     });
+//   }
+//   getCoordsFromName(loc) {
+//     this.updateState({
+//       latitude: loc.lat,
+//       longitude: loc.lng,
+//     });
+//   }
+//   onRegionChange(region) {
+//     this.setState({ region });
+//   }
+// }
 
 function MessagesScreen({navigation}) {
   return (
@@ -51,6 +95,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  mapContainer: {
+    flex: 1,
   },
   container: {
     flex: 1,
