@@ -1,0 +1,17 @@
+expo go ez tutorials
+https://docs.expo.dev/tutorial/button/
+
+ai images
+https://www.wombo.art/create
+
+expo go mapview
+https://docs.expo.dev/versions/latest/sdk/map-view/
+
+expo go navigation
+https://docs.expo.dev/guides/routing-and-navigation/
+https://reactnavigation.org/docs/hello-react-navigation/
+https://www.brainstormcreative.co.uk/react-native-expo/how-to-set-up-expo-app-navigation-using-react-navigation/
+
+expo go map location
+https://mdmoin07.medium.com/react-native-maps-with-autocomplete-e9c71e493974
+https://docs.expo.dev/versions/latest/sdk/location/#enabling-emulator-location
