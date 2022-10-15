@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MapView from 'react-native-maps';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -15,11 +15,14 @@ function MapScreen() {
   );
 }
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   return (
     <View style={styles.testContainer}>
       <Text>Hello, world!</Text>
       {/* <StatusBar style="auto" /> */}
+      <Button
+        title="Show me the Map screen"
+        onPress={() => navigation.navigate('Map')}/>
     </View>
   );
 }
