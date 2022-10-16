@@ -28,6 +28,7 @@ export default ({navigation}) => {
             <Button title = "Drop a Bottle!" navigation = {navigation}/>
 
             <Text style = {styles.itemTitle}> About </Text>
+            <Text style = {styles.about}> Leave messages for others in virtual space and read those left by others! </Text>
         </View>
 
 
@@ -57,7 +58,8 @@ const styles = StyleSheet.create({
 
     },
 
-    itemTitle: {fontSize: 40, padding: 5, color: "black"},
+    itemTitle: {fontSize: 40, padding: 10, color: "black"},
+    about: {fontSize: 30, padding: 10, color: "black"},
     map: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
@@ -76,7 +78,8 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 30,
         flexDirection: "row",
-        justifyContent: "center"
+        justifyContent: "center",
+        alignItems: "center"
     }
 
 
