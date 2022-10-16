@@ -94,8 +94,12 @@ function App() {
             )
           }}
           component = {map}/>
-        <Tab.Screen name = "My Bottles" component = {bottles}/>
-
+        <Tab.Screen name = "My Bottles" options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='chatbox' size={size} color={color} />
+          )
+          }}          
+          component = {bottles}/>
 
       </Tab.Navigator>
 
