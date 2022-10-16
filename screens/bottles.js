@@ -39,6 +39,10 @@ function MessagesScreen({navigation}) {
     {title: "message2", color: "green"}
 ])
 
+    const removeItemFromLists = (index) => {
+        lists.splice(index,1)
+        setLists([...lists])
+    }
 
     const addItemToLists = (item) => {
         lists.push(item)
@@ -57,7 +61,9 @@ function MessagesScreen({navigation}) {
                 <FlatList data = {lists}
                 renderItem = {({item: {title, color}, index}) => {
                     return(
-                        <Bottle title = {title} color = {color} navigation = {navigation}/>
+                        <Bottle title = {title} color = {color} navigation = {navigation}
+                        onPress={() => {navigation.navigate("Message Title", {title, color})}} 
+                        onDelete = {() => removeItemFromLists(index)}/>
                     )
                 }}
 
@@ -70,20 +76,20 @@ function MessagesScreen({navigation}) {
   
 
 
-const Bottle = (props) => {
+const Bottle = ({title, color, onPress, onDelete}) => {
     
     return (
 
-        <TouchableOpacity onPress={() => {props.navigation.navigate("Message Title", props.title, props.color)}} style = {[styles.itemContainer, {backgroundColor: props.color}]}>
+        <TouchableOpacity style = {[styles.itemContainer, {backgroundColor: color}]} onPress={onPress}>
                 <View>
-                    <Text style = {styles.itemTitle}> {props.title} </Text>
+                    <Text style = {styles.itemTitle}> {title} </Text>
                 </View>
 
                 <View style = {{flexDirection: "row"}}>
                     <TouchableOpacity onPress = {() => {}}>
                         <Ionicons name = "options-outline" size = {24} color = "white"/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress = {() => {}}>
+                    <TouchableOpacity onPress ={onDelete}>
                         <Ionicons name = "trash-outline" size = {24} color = "white"/>
                     </TouchableOpacity>
 
@@ -98,13 +104,15 @@ const Bottle = (props) => {
 
  
 export default ({navigation}) => {
+
+    // n_bottles = arr.length + "Bottles"
     return (
 
         <Stack.Navigator screenOptions={{headerShown: true}}>
         <Stack.Screen 
         name="Bottles" 
         component={MessagesScreen} 
-        options = {{title: "2 Bottles", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'blue', headerTitleStyle: {fontSize: 30}}}
+        options = {{title: "n_bottles", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'blue', headerTitleStyle: {fontSize: 30}}}
         />
 
         <Stack.Screen name="Message Title" component={TestMessage} options = {{title: "message title", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'black', headerTitleStyle: {fontSize: 20, fontWeight: 'bold'}}}/>
