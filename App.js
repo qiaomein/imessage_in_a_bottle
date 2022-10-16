@@ -12,7 +12,6 @@ import home from "./screens/home"
 import map from "./screens/map"
 import bottles from "./screens/bottles"
 import colors from './constants/colors';
-import bottle from "./screens/bottle"
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

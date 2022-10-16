@@ -3,15 +3,18 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, FlatList} from 'react-native';
 import colors from "../constants/colors"
 import {Ionicons}  from "@expo/vector-icons"
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as Location from 'expo-location'; import MapView from 'react-native-maps';
 import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
+
+const Stack = createNativeStackNavigator();
 
 
 function TestMessage() {
     return (
       <View style={styles.testContainer}>
-        <Text>Message content here</Text>
+        <Text style = {styles.bottle_message}>Message content hereMessage content hereMessage content hereMessage content hereMessage content hereMessage content hereMessage content hereMessage content hereMessage content here</Text>
         {/* <StatusBar style="auto" /> */}
         {/* <Button
           title="Show me the Map screen"
@@ -23,28 +26,21 @@ function TestMessage() {
   function MessagesScreen({navigation}) {
     return (
       <ScrollView contentContainerStyle={styles.stage}>
-      <TableView appearance="light">
-        <Section header="" footer="">
-          <Cell 
-            cellStyle="Subtitle"
-            title="Message Title"
-            detail="Location + Date"
-            accessory="DisclosureIndicator"
-            onPress={() => navigation.navigate('Message Title')}
-          />
-        </Section>
-      </TableView>
+      <View style = {styles.container}>         
+                <FlatList data = {[
+                    {title: "message1", color: "red"},
+                    {title: "message2", color: "green"}
+                ]}
+                renderItem = {({item: {title, color}, index}) => {
+                    return(
+                        <Bottle title = {title} color = {color} navigation = {navigation}/>
+                    )
+                }}
+
+                />
+
+            </View>
     </ScrollView>
-    );
-  }
-  
-  function Messages() {
-    return (
-      <Stack.Navigator>
-      {/* {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
-      <Stack.Screen name="All Messages" component={MessagesScreen} />
-      <Stack.Screen name="Message Title" component={TestMessage} />
-    </Stack.Navigator>
     );
   }
   
@@ -53,8 +49,8 @@ function TestMessage() {
 const Bottle = (props) => {
     
     return (
-        
-            <TouchableOpacity onPress={() => {props.navigation.navigate("Bottle Map")}} style = {[styles.itemContainer, {backgroundColor: props.color}]}>
+
+        <TouchableOpacity onPress={() => {props.navigation.navigate("Message Title")}} style = {[styles.itemContainer, {backgroundColor: props.color}]}>
                 <View>
                     <Text style = {styles.itemTitle}> {props.title} </Text>
                 </View>
@@ -70,7 +66,8 @@ const Bottle = (props) => {
                 </View>
 
             </TouchableOpacity>
-        
+
+
 
     )
 }
@@ -78,20 +75,13 @@ const Bottle = (props) => {
  
 export default ({navigation}) => {
     return (
-        <View style = {styles.container}>         
-                <FlatList data = {[
-                    {title: "School", color: "red"},
-                    {title: "fun", color: "green"}
-                ]}
-                renderItem = {({item: {title, color}, index}) => {
-                    return(
-                        <Bottle title = {title} color = {color} navigation = {navigation}/>
-                    )
-                }}
 
-                />
+        <Stack.Navigator screenOptions={{headerShown: true}}>
+        <Stack.Screen name="Bottles" component={MessagesScreen} options = {{title: "2 Bottles", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'blue', headerTitleStyle: {fontSize: 30}}}/>
+        <Stack.Screen name="Message Title" component={TestMessage} options = {{title: "message title", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'black', headerTitleStyle: {fontSize: 20, fontWeight: 'bold'}}}/>
 
-            </View>
+    
+        </Stack.Navigator>
     )
 }
 
@@ -120,6 +110,11 @@ const styles = StyleSheet.create({
     },
 
     itemTitle: {fonSize: 24, padding: 30, color: "black"},
+    bottle_message:{
+        fontSize: 20,
+        margin: 15,
+        flexDirection: 'row',
+    }
 
 
 
