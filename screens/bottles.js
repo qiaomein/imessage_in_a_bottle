@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 var colorlist = Array("red", "green", colors.purple);
-
+var listlength = 0;
 
 function TestMessage() {
     return (
@@ -35,6 +35,9 @@ const renderAddListIcon = (addItemToLists) => {
 }
 
 function MessagesScreen({navigation}) {
+    let tit = listlength + " Bottles";
+    navigation.setOptions({title: tit})
+
 
     const[lists, setLists] = React.useState([
         {title: "message1", color: "red"},
@@ -42,20 +45,30 @@ function MessagesScreen({navigation}) {
 ])
 
     const removeItemFromLists = (index) => {
+        
         lists.splice(index,1)
         setLists([...lists])
+        tit = lists.length + " bottles";
+        navigation.setOptions({title: lists.length + " bottles"})
     }
 
     const addItemToLists = (item) => {
         lists.push(item)
         setLists([...lists])
+        
+        let tit = listlength + " bottles";
+        navigation.setOptions({title: tit})
+        listlength = lists.length
+        //console.log(lists.length)
     }
+
 
     React.useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => renderAddListIcon(addItemToLists)
         })
     })
+
     
     return (
       <ScrollView contentContainerStyle={styles.stage}>
@@ -71,7 +84,9 @@ function MessagesScreen({navigation}) {
 
                 />
 
+            <Text> {lists.length}</Text>
             </View>
+    
     </ScrollView>
     );
   }
@@ -114,8 +129,9 @@ export default ({navigation}) => {
         <Stack.Screen 
         name="Bottles" 
         component={MessagesScreen} 
-        options = {{title: "n_bottles", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'blue', headerTitleStyle: {fontSize: 30}}}
+        options = {{title: listlength + " bottles", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'blue', headerTitleStyle: {fontSize: 30}}}
         />
+        
 
         <Stack.Screen name="Message Title" component={TestMessage} options = {{title: "message title", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'black', headerTitleStyle: {fontSize: 20, fontWeight: 'bold'}}}/>
 
