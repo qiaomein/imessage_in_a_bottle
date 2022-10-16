@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 var colorlist = Array("red", "green", colors.purple);
-var listlength = 0;
+var listlength = 2;
 
 function TestMessage() {
     return (
@@ -50,6 +50,7 @@ function MessagesScreen({navigation}) {
         setLists([...lists])
         tit = lists.length + " bottles";
         navigation.setOptions({title: lists.length + " bottles"})
+        listlength = lists.length
     }
 
     const addItemToLists = (item) => {
@@ -59,7 +60,6 @@ function MessagesScreen({navigation}) {
         let tit = listlength + " bottles";
         navigation.setOptions({title: tit})
         listlength = lists.length
-        //console.log(lists.length)
     }
 
 
@@ -83,8 +83,6 @@ function MessagesScreen({navigation}) {
                 }}
 
                 />
-
-            <Text> {lists.length}</Text>
             </View>
     
     </ScrollView>
@@ -120,7 +118,7 @@ const Bottle = ({title, color, onPress, onDelete}) => {
 }
 
  
-export default ({navigation}) => {
+export default () => {
 
     // n_bottles = arr.length + "Bottles"
     return (
