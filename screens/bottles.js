@@ -23,14 +23,38 @@ function TestMessage() {
     );
   }
   
-  function MessagesScreen({navigation}) {
+
+const renderAddListIcon = (addItemToLists) => {
+    return (
+        <TouchableOpacity onPress = {() => {addItemToLists({title:"Title", color:colors.purple})}}>
+            <Text style = {styles.icon}> + </Text>
+        </TouchableOpacity>
+    )
+}
+
+function MessagesScreen({navigation}) {
+
+    const[lists, setLists] = React.useState([
+        {title: "message1", color: "red"},
+    {title: "message2", color: "green"}
+])
+
+
+    const addItemToLists = (item) => {
+        lists.push(item)
+        setLists([...lists])
+    }
+
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => renderAddListIcon(addItemToLists)
+        })
+    })
+    
     return (
       <ScrollView contentContainerStyle={styles.stage}>
       <View style = {styles.container}>         
-                <FlatList data = {[
-                    {title: "message1", color: "red"},
-                    {title: "message2", color: "green"}
-                ]}
+                <FlatList data = {lists}
                 renderItem = {({item: {title, color}, index}) => {
                     return(
                         <Bottle title = {title} color = {color} navigation = {navigation}/>
@@ -50,7 +74,7 @@ const Bottle = (props) => {
     
     return (
 
-        <TouchableOpacity onPress={() => {props.navigation.navigate("Message Title")}} style = {[styles.itemContainer, {backgroundColor: props.color}]}>
+        <TouchableOpacity onPress={() => {props.navigation.navigate("Message Title", props.title, props.color)}} style = {[styles.itemContainer, {backgroundColor: props.color}]}>
                 <View>
                     <Text style = {styles.itemTitle}> {props.title} </Text>
                 </View>
@@ -77,7 +101,12 @@ export default ({navigation}) => {
     return (
 
         <Stack.Navigator screenOptions={{headerShown: true}}>
-        <Stack.Screen name="Bottles" component={MessagesScreen} options = {{title: "2 Bottles", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'blue', headerTitleStyle: {fontSize: 30}}}/>
+        <Stack.Screen 
+        name="Bottles" 
+        component={MessagesScreen} 
+        options = {{title: "2 Bottles", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'blue', headerTitleStyle: {fontSize: 30}}}
+        />
+
         <Stack.Screen name="Message Title" component={TestMessage} options = {{title: "message title", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'black', headerTitleStyle: {fontSize: 20, fontWeight: 'bold'}}}/>
 
     
@@ -114,6 +143,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         margin: 15,
         flexDirection: 'row',
+    },
+    icon:{
+        padding: 5,
+        fontSize: 30,
     }
 
 
