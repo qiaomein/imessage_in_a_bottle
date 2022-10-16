@@ -1,13 +1,17 @@
 import * as React from 'react';
-import MapView from 'react-native-maps';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Button, TouchableOpacity } from 'react-native';
+import {Ionicons}  from "@expo/vector-icons"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as Location from 'expo-location';
+import * as Location from 'expo-location'; import MapView from 'react-native-maps';
 import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
+import home from "./screens/home"
+import map from "./screens/map"
+import bottles from "./screens/bottles"
+import colors from './constants/colors';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,77 +68,39 @@ function MapScreen(props) {
 //   }
 // }
 
-function TestMessage() {
-  return (
-    <View style={styles.testContainer}>
-      <Text>Message content here</Text>
-      {/* <StatusBar style="auto" /> */}
-      {/* <Button
-        title="Show me the Map screen"
-        onPress={() => navigation.navigate('Map')}/> */}
-    </View>
-  );
-}
 
-function MessagesScreen({navigation}) {
-  return (
-    <ScrollView contentContainerStyle={styles.stage}>
-    <TableView appearance="light">
-      <Section header="" footer="">
-        <Cell 
-          cellStyle="Subtitle"
-          title="Message Title"
-          detail="Location + Date"
-          accessory="DisclosureIndicator"
-          onPress={() => navigation.navigate('Message Title')}
-        />
-      </Section>
-    </TableView>
-  </ScrollView>
-  );
-}
-
-function Messages() {
-  return (
-    <Stack.Navigator>
-    {/* {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
-    <Stack.Screen name="All Messages" component={MessagesScreen} />
-    <Stack.Screen name="Message Title" component={TestMessage} />
-  </Stack.Navigator>
-  );
-}
 
 function App() {
+  const navTheme = {
+    colors: {
+      background: colors.yellow
+
+    }
+  }
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="My Messages" component={Messages} />
+    <NavigationContainer theme = {navTheme}>
+      
+
+      <Tab.Navigator tabBarOptions = {{activeTintColor: "brown", style: {backgroundColor: colors.yellow}}}>
+        <Tab.Screen name = "Home" options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name='ios-home' size={size} color={color} />
+            )
+          }}
+          component={home}/>
+        <Tab.Screen name = "Bottle Map" options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name='ios-map' size={size} color={color} />
+            )
+          }}
+          component = {map}/>
+        <Tab.Screen name = "My Bottles" component = {bottles}/>
+
+
       </Tab.Navigator>
+
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  testContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mapContainer: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
-});
 
 export default App;
