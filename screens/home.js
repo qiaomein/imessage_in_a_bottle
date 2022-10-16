@@ -1,30 +1,21 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Dimensions, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image } from 'react-native';
 import colors from "../constants/colors"
 import {Ionicons}  from "@expo/vector-icons"
+import icon from "../assets/favicon.png"
 
 
 
-const ListButton = (props) => {
+const Button = (props) => {
     
     return (
         
             <TouchableOpacity onPress={() => {props.navigation.navigate("Bottle Map")}} style = {styles.itemContainer}>
                 <View>
-                    <Text style = {styles.itemTitle}> {props.title} </Text>
+                    {/*<Image source = {icon} style = {styles.iconStyle} />*/}
+                    <Text style = {styles.buttonText}> {props.title} </Text>
                 </View>
-
-                <View style = {{flexDirection: "row"}}>
-                    <TouchableOpacity onPress = {() => {}}>
-                        <Ionicons name = "options-outline" size = {24} color = "white"/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress = {() => {}}>
-                        <Ionicons name = "trash-outline" size = {24} color = "white"/>
-                    </TouchableOpacity>
-
-                </View>
-
             </TouchableOpacity>
         
 
@@ -34,13 +25,9 @@ const ListButton = (props) => {
 export default ({navigation}) => {
     return (
         <View style = {styles.container}>
+            <Button title = "Drop a Bottle!" navigation = {navigation}/>
 
-            <Text> Welcome! </Text>
-            
-
-
-            <ListButton title = "school" navigation = {navigation}/>
-            <ListButton title = "lmfao" navigation = {navigation}/>
+            <Text style = {styles.itemTitle}> About </Text>
         </View>
 
 
@@ -51,9 +38,9 @@ const styles = StyleSheet.create({
 
     container: {
       flex: 1,
-      backgroundColor: colors.yellow,
+      backgroundColor: colors.blue,
       alignItems: 'center',
-      justifyContent: 'center',  
+      justifyContent: 'top',  
     },
 
     itemContainer: {
@@ -61,16 +48,16 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         height: 100,
-        flex: 1,
+        flex: -1,
         borderRadius: 30,
-        marginHorizontal: 20,
-        marginVertical: 10,
+        marginHorizontal: 30,
+        marginVertical: 30,
         padding: 15,
-        backgroundColor: colors.blue
+        backgroundColor: colors.yellow
 
     },
 
-    itemTitle: {fonSize: 24, padding: 5, color: "black"},
+    itemTitle: {fontSize: 40, padding: 5, color: "black"},
     map: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
@@ -78,6 +65,19 @@ const styles = StyleSheet.create({
     mapContainer: {
         flex: 1,
       },
+
+    iconStyle: {
+        flexDirection: "row",
+        alignContent: "center",
+        resizeMode: 'contain'
+        
+    },
+
+    buttonText: {
+        fontSize: 30,
+        flexDirection: "row",
+        justifyContent: "center"
+    }
 
 
   

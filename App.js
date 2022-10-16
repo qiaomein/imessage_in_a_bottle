@@ -1,4 +1,7 @@
-
+import * as React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Dimensions, Button, TouchableOpacity } from 'react-native';
+import {Ionicons}  from "@expo/vector-icons"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -7,6 +10,8 @@ import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
 import home from "./screens/home"
 import map from "./screens/map"
+import bottles from "./screens/bottles"
+import colors from './constants/colors';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,61 +68,25 @@ function MapScreen(props) {
 //   }
 // }
 
-function TestMessage() {
-  return (
-    <View style={styles.testContainer}>
-      <Text>Message content here</Text>
-      {/* <StatusBar style="auto" /> */}
-      {/* <Button
-        title="Show me the Map screen"
-        onPress={() => navigation.navigate('Map')}/> */}
-    </View>
-  );
-}
-
-function MessagesScreen({navigation}) {
-  return (
-    <ScrollView contentContainerStyle={styles.stage}>
-    <TableView appearance="light">
-      <Section header="" footer="">
-        <Cell 
-          cellStyle="Subtitle"
-          title="Message Title"
-          detail="Location + Date"
-          accessory="DisclosureIndicator"
-          onPress={() => navigation.navigate('Message Title')}
-        />
-      </Section>
-    </TableView>
-  </ScrollView>
-  );
-}
-
-function Messages() {
-  return (
-    <Stack.Navigator>
-    {/* {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
-    <Stack.Screen name="All Messages" component={MessagesScreen} />
-    <Stack.Screen name="Message Title" component={TestMessage} />
-  </Stack.Navigator>
-  );
-}
 
 
 function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name = "Home" component={home} />
-        <Stack.Screen name = "Bottle Map" component = {map}/>
-      </Stack.Navigator>
-
+  const navTheme = {
+    colors: {
+      background: colors.yellow
       
-{/*      <Tab.Navigator>
-        <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="My Bottles" component={Messages} />
+    }
+  }
+  return (
+    <NavigationContainer theme = {navTheme}>
+
+      <Tab.Navigator>
+        <Tab.Screen name = "Home" component={home}/>
+        <Tab.Screen name = "Bottle Map" component = {map}/>
+        <Tab.Screen name = "My Bottles" component = {bottles}/>
+
       </Tab.Navigator>
-  */}
+
     </NavigationContainer>
   );
 }
