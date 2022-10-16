@@ -6,10 +6,7 @@ import {Ionicons}  from "@expo/vector-icons"
 import * as Location from 'expo-location'; import MapView from 'react-native-maps';
 import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
-import { createStackNavigator } from '@react-navigation/stack';
 
-
-const Stack = createStackNavigator()
 
 function TestMessage() {
     return (
@@ -57,7 +54,7 @@ const Bottle = (props) => {
     
     return (
         
-            <TouchableOpacity onPress={() => {props.navigation.navigate('My Bottles',{screen: "Bottle_Screen"})}} style = {[styles.itemContainer, {backgroundColor: props.color}]}>
+            <TouchableOpacity onPress={() => {props.navigation.navigate("Bottle Map")}} style = {[styles.itemContainer, {backgroundColor: props.color}]}>
                 <View>
                     <Text style = {styles.itemTitle}> {props.title} </Text>
                 </View>
@@ -78,42 +75,17 @@ const Bottle = (props) => {
     )
 }
 
-const bottles_screen = () => {
-    <View style = {styles.container}>         
-                <FlatList data = {[
-                    {title: "School", color: "red"},
-                    {title: "fun", color: "green"}
-                ]}
-                renderItem = {({item: {title, color}, index}) => {
-                    return(
-                        <Bottle title = {title} color = {color} navigation = {navigation}/>
-                    )
-                }}
-
-                />
-
-            </View>
-}
-
-const bottle_screen = () => {
-    <View style = {styles.container}>
-        <Text> hi!! </Text>
-
-    </View>
-}
-
-export default BottleStack = () => {
+export default ({navigation}) => {
     return (
-        <Stack.Navigator initialRouteName='bottles_screen'>
-            
-            <Stack.Screen name = 'Bottle_Screen' component={bottle_screen} />
-            <Stack.Screen name = 'bottles_screen' component = {bottles_screen}/>
+        <View style = {styles.container}>         
 
-        </Stack.Navigator>
+
+            
+        </View>
+
+
     )
 }
-
-
 
 const styles = StyleSheet.create({
 

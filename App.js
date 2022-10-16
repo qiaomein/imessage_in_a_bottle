@@ -10,8 +10,9 @@ import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
 import home from "./screens/home"
 import map from "./screens/map"
-import bottles from "./screens/bottles"
+import BottleStack from "./screens/bottles"
 import colors from './constants/colors';
+import bottle from "./screens/bottle"
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,16 +75,23 @@ function App() {
   const navTheme = {
     colors: {
       background: colors.yellow
-      
+
     }
   }
   return (
     <NavigationContainer theme = {navTheme}>
+      
 
-      <Tab.Navigator>
-        <Tab.Screen name = "Home" component={home}/>
+      <Tab.Navigator tabBarOptions = {{activeTintColor: "brown", style: {backgroundColor: colors.yellow}}}>
+        <Tab.Screen name = "Home" options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name='ios-home' size={size} color={color} />
+            )
+          }}
+          component={home}/>
         <Tab.Screen name = "Bottle Map" component = {map}/>
-        <Tab.Screen name = "My Bottles" component = {bottles}/>
+        <Tab.Screen name = "My Bottles" component = {BottleStack}/>
+
 
       </Tab.Navigator>
 
