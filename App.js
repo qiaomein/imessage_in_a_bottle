@@ -10,7 +10,7 @@ import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
 import home from "./screens/home"
 import map from "./screens/map"
-import BottleStack from "./screens/bottles"
+import bottles from "./screens/bottles"
 import colors from './constants/colors';
 import bottle from "./screens/bottle"
 
@@ -90,7 +90,7 @@ function App() {
           }}
           component={home}/>
         <Tab.Screen name = "Bottle Map" component = {map}/>
-        <Tab.Screen name = "My Bottles" component = {BottleStack}/>
+        <Tab.Screen name = "My Bottles" component = {bottles}/>
 
 
       </Tab.Navigator>
@@ -98,29 +98,5 @@ function App() {
     </NavigationContainer>
   );
 }
-
-{/*
-const styles = StyleSheet.create({
-  testContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mapContainer: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
-});
-*/}
 
 export default App;

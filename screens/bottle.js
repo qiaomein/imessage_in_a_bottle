@@ -78,7 +78,7 @@ const Bottle = (props) => {
 export default ({navigation}) => {
     return (
         <View style = {styles.container}>         
-
+        <Text> hi! </Text>
 
             
         </View>
