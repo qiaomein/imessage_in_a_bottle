@@ -9,6 +9,7 @@ import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
+var colorlist = Array("red", "green", colors.purple);
 
 
 function TestMessage() {
@@ -25,8 +26,9 @@ function TestMessage() {
   
 
 const renderAddListIcon = (addItemToLists) => {
+    var chosenColor = colorlist[Math.floor(Math.random()*colorlist.length)];
     return (
-        <TouchableOpacity onPress = {() => {addItemToLists({title:"Title", color:colors.purple})}}>
+        <TouchableOpacity onPress = {() => {addItemToLists({title:"Title", color:chosenColor})}}>
             <Text style = {styles.icon}> + </Text>
         </TouchableOpacity>
     )

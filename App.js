@@ -88,7 +88,12 @@ function App() {
             )
           }}
           component={home}/>
-        <Tab.Screen name = "Bottle Map" component = {map}/>
+        <Tab.Screen name = "Bottle Map" options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name='ios-map' size={size} color={color} />
+            )
+          }}
+          component = {map}/>
         <Tab.Screen name = "My Bottles" component = {bottles}/>
 
 
