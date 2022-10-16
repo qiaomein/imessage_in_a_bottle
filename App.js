@@ -1,13 +1,12 @@
-import * as React from 'react';
-import MapView from 'react-native-maps';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as Location from 'expo-location';
+import * as Location from 'expo-location'; import MapView from 'react-native-maps';
 import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
+import home from "./screens/home"
+import map from "./screens/map"
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -104,17 +103,26 @@ function Messages() {
   );
 }
 
+
 function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name = "Home" component={home} />
+        <Stack.Screen name = "Bottle Map" component = {map}/>
+      </Stack.Navigator>
+
+      
+{/*      <Tab.Navigator>
         <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="My Messages" component={Messages} />
+        <Tab.Screen name="My Bottles" component={Messages} />
       </Tab.Navigator>
+  */}
     </NavigationContainer>
   );
 }
 
+{/*
 const styles = StyleSheet.create({
   testContainer: {
     flex: 1,
@@ -136,5 +144,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
   },
 });
+*/}
 
 export default App;
