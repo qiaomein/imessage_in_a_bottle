@@ -8,7 +8,15 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
-web-build/
+web-build/_
+__pycache__
+.idea
+android
+venv
+main.jks
+
 
 # macOS
 .DS_Store
+
+
