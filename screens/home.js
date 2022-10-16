@@ -11,7 +11,7 @@ const Button = (props) => {
     
     return (
         
-            <TouchableOpacity onPress={() => {props.navigation.navigate("Bottle Map")}} style = {styles.itemContainer}>
+            <TouchableOpacity onPress={() => {props.navigation.navigate("My Bottles", {screen: "textinput"} )}} style = {styles.itemContainer}>
                 <View>
                     {/*<Image source = {icon} style = {styles.iconStyle} />*/}
                     <Text style = {styles.buttonText}> {props.title} </Text>

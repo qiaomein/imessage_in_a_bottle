@@ -1,16 +1,41 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, FlatList} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, FlatList, TextInput, SafeAreaView} from 'react-native';
 import colors from "../constants/colors"
 import {Ionicons}  from "@expo/vector-icons"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as Location from 'expo-location'; import MapView from 'react-native-maps';
 import { Cell, Section, TableView } from 'react-native-tableview-simple';
 import { ScrollView } from 'react-native-gesture-handler';
+import { color } from 'react-native-reanimated';
 
 const Stack = createNativeStackNavigator();
-var colorlist = Array("red", "green", colors.purple);
+var colorlist = Array("red", "green", colors.purple, "pink", "orange");
 var listlength = 2;
+
+
+const UselessTextInput = () => {
+    const [text, setText] = React.useState('');
+    const [number, setNumber] = React.useState(null);
+
+  return (
+    <View>
+        <ScrollView contentContainerStyle={styles.stage}>
+      <TextInput multiline style={styles.input} placeholder = "Type here" onChangeText={(val) => setText(val)} value={text} />
+      <TextInput
+        style={styles.input}
+        onChangeText={(val) => setNumber(val)}
+        value={number}
+        placeholder="Bottle Longevity (days)"
+        keyboardType="numeric"
+      />
+
+      <Text style = {styles.bottle_message}>{text}</Text>
+        </ScrollView>
+    </View>
+  );
+};
+
 
 function TestMessage() {
     return (
@@ -132,7 +157,7 @@ export default () => {
         
 
         <Stack.Screen name="Message Title" component={TestMessage} options = {{title: "message title", headerStyle: {backgroundColor: colors.yellow}, headerTintColor: 'black', headerTitleStyle: {fontSize: 20, fontWeight: 'bold'}}}/>
-
+        <Stack.Screen name = "textinput" component={UselessTextInput} options = {{title: "What's your secret to the world?", headerStyle: {backgroundColor: colors.yellow}}}/>
     
         </Stack.Navigator>
     )
@@ -171,6 +196,18 @@ const styles = StyleSheet.create({
     icon:{
         padding: 5,
         fontSize: 30,
+    },
+    input: {
+        height:100,
+        margin:12,
+        borderWidth:1,
+        padding:10,
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "top",
+        alignItems: "top",
+        borderColor: colors.blue,
+        color: "blue"
     }
 
 
